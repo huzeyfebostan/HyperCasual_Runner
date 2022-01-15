@@ -389,7 +389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   limitX: 4
   runningSpeed: 5
-  xSpeed: 1000
+  xSpeed: 200
   ridingCylinderPrefab: {fileID: 7440869249618836341, guid: 2551ee71aaab9224f920dd8233047f87, type: 3}
   cylinders: []
   bridgePiecePrefab: {fileID: 3758812013489802544, guid: 534a3102fd46b2646a38e2ddbe5fac8b, type: 3}
