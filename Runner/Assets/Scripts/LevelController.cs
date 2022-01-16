@@ -9,8 +9,8 @@ public class LevelController : MonoBehaviour
     public static LevelController Current; //Diðer sýnýflarýn bu objeye eriþmesi için
     public bool gameActive = false; //levelin aktif olup olmadýðý söyler
 
-    public GameObject startMenu, gameMenu, gameOverMenu, finishMenu; //menüleri tutar
-    public Text scoreText, finishScoreText, currentLevelText, nextLevelText, startingMenuMoneyText, gameOverMenuMoneyText, finishGameMenuMoneyText; //Oyun ekranýndaki text metinlerini tutar
+    public GameObject startMenu, gameMenu, gameOverMenu, finishMenu, restartGameMenu; //menüleri tutar
+    public Text scoreText, finishScoreText, currentLevelText, nextLevelText, startingMenuMoneyText, gameOverMenuMoneyText, finishGameMenuMoneyText, restartGameText; //Oyun ekranýndaki text metinlerini tutar
     public Slider levelProgressBar; //Karakterin oyun içindeki ilerlemesini tutar
     public float maxDistance; //Karakterin bitiþ çizgisine olan uzaklýðýný tutar
     public GameObject finishLine; //Bitiþ çizgisini tutar
@@ -61,6 +61,11 @@ public class LevelController : MonoBehaviour
         LevelLoader.Current.ChangeLevel(SceneManager.GetActiveScene().name);
     }
 
+    public void RestartGame()
+    {
+        LevelLoader.Current.ChangeLevel("Level " + (currentLevel - 2));
+    }
+
     public void LoadNextLevet()
     {
         LevelLoader.Current.ChangeLevel("Level " + (currentLevel + 1));
@@ -78,14 +83,27 @@ public class LevelController : MonoBehaviour
 
     public void FinishGame()
     {
-        GiveMoneyToPlayer(score);
-        gameMusicAudioSource.Stop();
-        gameMusicAudioSource.PlayOneShot(victoryAudioClip);
-        PlayerPrefs.SetInt("currentLevel", currentLevel + 1);
-        finishScoreText.text = score.ToString();
-        gameMenu.SetActive(false);
-        finishMenu.SetActive(true);
-        gameActive = false;
+        if (currentLevel == 2)
+        {
+            finishMenu.SetActive(false);
+            restartGameMenu.SetActive(true);
+            GiveMoneyToPlayer(score);
+            gameMusicAudioSource.Stop();
+            gameMusicAudioSource.PlayOneShot(victoryAudioClip);
+            finishScoreText.text = score.ToString();
+            gameActive = false;
+        }
+        else
+        {
+            GiveMoneyToPlayer(score);
+            gameMusicAudioSource.Stop();
+            gameMusicAudioSource.PlayOneShot(victoryAudioClip);
+            PlayerPrefs.SetInt("currentLevel", currentLevel + 1);
+            finishScoreText.text = score.ToString();
+            gameMenu.SetActive(false);
+            finishMenu.SetActive(true);
+            gameActive = false;
+        }
     }
 
     public void ChangeScore(int increment)
