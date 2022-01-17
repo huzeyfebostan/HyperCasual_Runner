@@ -10,7 +10,7 @@ public class LevelController : MonoBehaviour
     public bool gameActive = false; //levelin aktif olup olmadýðý söyler
 
     public GameObject startMenu, gameMenu, gameOverMenu, finishMenu, restartGameMenu; //menüleri tutar
-    public Text scoreText, finishScoreText, currentLevelText, nextLevelText, startingMenuMoneyText, gameOverMenuMoneyText, finishGameMenuMoneyText, restartGameText; //Oyun ekranýndaki text metinlerini tutar
+    public Text scoreText, finishScoreText, currentLevelText, nextLevelText, startingMenuMoneyText, gameOverMenuMoneyText, finishGameMenuMoneyText, restartGameMoneyText, restartScoreText; //Oyun ekranýndaki text metinlerini tutar
     public Slider levelProgressBar; //Karakterin oyun içindeki ilerlemesini tutar
     public float maxDistance; //Karakterin bitiþ çizgisine olan uzaklýðýný tutar
     public GameObject finishLine; //Bitiþ çizgisini tutar
@@ -63,7 +63,7 @@ public class LevelController : MonoBehaviour
 
     public void RestartGame()
     {
-        LevelLoader.Current.ChangeLevel("Level " + (currentLevel - 2));
+        SceneManager.LoadScene("Level 0");
     }
 
     public void LoadNextLevet()
@@ -85,12 +85,14 @@ public class LevelController : MonoBehaviour
     {
         if (currentLevel == 2)
         {
-            finishMenu.SetActive(false);
-            restartGameMenu.SetActive(true);
+            UpdateMoneyTexts();
             GiveMoneyToPlayer(score);
             gameMusicAudioSource.Stop();
             gameMusicAudioSource.PlayOneShot(victoryAudioClip);
-            finishScoreText.text = score.ToString();
+            restartScoreText.text = score.ToString();
+            finishMenu.SetActive(false);
+            restartGameMenu.SetActive(true);
+            gameMenu.SetActive(false);
             gameActive = false;
         }
         else
@@ -118,6 +120,7 @@ public class LevelController : MonoBehaviour
         startingMenuMoneyText.text = money.ToString();
         gameOverMenuMoneyText.text = money.ToString();
         finishGameMenuMoneyText.text = money.ToString();
+        restartGameMoneyText.text = money.ToString();
     }
 
     public void GiveMoneyToPlayer(int increment)

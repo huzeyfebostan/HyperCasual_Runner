@@ -3723,7 +3723,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6434748391062951975
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5233,7 +5233,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5331,7 +5331,8 @@ MonoBehaviour:
   startingMenuMoneyText: {fileID: 8840499456716476169}
   gameOverMenuMoneyText: {fileID: 3873730646191211334}
   finishGameMenuMoneyText: {fileID: 8768171943741563595}
-  restartGameText: {fileID: 1462258563067869747}
+  restartGameMoneyText: {fileID: 5071788082181151511}
+  restartScoreText: {fileID: 1922324235246531181}
   levelProgressBar: {fileID: 6434748390550679581}
   maxDistance: 0
   finishLine: {fileID: 0}
@@ -5478,7 +5479,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
